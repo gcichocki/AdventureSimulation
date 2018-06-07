@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+[System.Serializable]
 public class BaseEntity {
 
     protected Inventory inventory;
@@ -13,8 +13,6 @@ public class BaseEntity {
     [SerializeField] protected int damage;
     [SerializeField] protected int energy;
     
-
-    [Header("Attack Sensor")]
     [Tooltip("Settings for the attack sensor of the entity")]
     [SerializeField]
     protected Sensor attackRange;
