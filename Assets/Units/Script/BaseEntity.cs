@@ -6,13 +6,17 @@ using UnityEngine;
 [System.Serializable]
 public class BaseEntity {
 
+    public enum Class_T { FIGHTER, HEALER, HUNTER, ALL, MONSTER };
+
     protected Inventory inventory;
 
     [Header("Attributes")]
     [SerializeField] protected int health;
     [SerializeField] protected int damage;
     [SerializeField] protected int energy;
-    
+    [SerializeField] protected Class_T my_class;
+
+
     [Tooltip("Settings for the attack sensor of the entity")]
     [SerializeField]
     protected Sensor attackRange;
