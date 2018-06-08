@@ -9,16 +9,9 @@ public class Teleport : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        //other.gameObject.Transform.position = destination.position;
+        if(destination!=null)
+            other.gameObject.transform.position = destination.position;
     }
 
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

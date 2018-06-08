@@ -7,6 +7,12 @@ public class Agent : MonoBehaviour {
     [Header("Entity Variables")]
     public BaseEntity entity;
 
+	
+	[SerializeField] Sensor Vision;
+	[SerializeField] Sensor Discussion;
+
+	
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,4 +22,6 @@ public class Agent : MonoBehaviour {
 	void Update () {
 		
 	}
+
+
 }
