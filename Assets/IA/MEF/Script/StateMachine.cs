@@ -24,7 +24,7 @@ public class StateMachine {
 
 	}
 
-	public  void HandleMessage( Goal message ){
+	public void HandleMessage( Goal message ){
 
 	}
 }
