@@ -5,6 +5,11 @@ using UnityEngine;
 public class HandleObjects : State {
 
 
+	public HandleObjects(GameObject own): base(own){
+		
+	}
+
+
 	override
 	public void Enter(){
 

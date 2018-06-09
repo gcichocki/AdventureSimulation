@@ -5,7 +5,9 @@ using UnityEngine;
 public class AttackEnnemy : State  {
 
 
-
+	public AttackEnnemy(GameObject own): base(own){
+		
+	}
 	
 	public void Enter( GameObject ennemy){
 

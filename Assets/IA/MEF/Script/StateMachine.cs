@@ -23,4 +23,8 @@ public class StateMachine {
 	void ChangeState(){
 
 	}
+
+	public  void HandleMessage( Goal message ){
+
+	}
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class HandleTraps : State  {
 
-
+	public HandleTraps(GameObject own): base(own){
+		
+	}
 	override
 	public void Enter(){
 

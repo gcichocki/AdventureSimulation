@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GoHome : State  {
 
+	public GoHome(GameObject own): base(own){
+		
+	}
 
 	override
 	public void Enter(){

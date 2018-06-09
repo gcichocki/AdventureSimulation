@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class State  {
 
+	protected GameObject owner;
 
+	public State(GameObject own){
+		owner=own;
+	}
 
 	 public virtual void Enter(){
 
@@ -16,8 +20,6 @@ public class State  {
 		 
 	 }
 
-	public virtual void ReceiveMessage( Goal message ){
-
-	}
+	
 
 }

@@ -7,7 +7,9 @@ public class Agent : MonoBehaviour {
     [Header("Entity Variables")]
     public BaseEntity entity;
 
-	
+	[SerializeField] Transform Home;
+    [SerializeField] Transform DungeonEntrance;
+    [SerializeField] Transform Relic;
 	[SerializeField] Sensor Vision;
 	[SerializeField] Sensor Discussion;
 
