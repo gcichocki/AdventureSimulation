@@ -20,8 +20,19 @@ public class StateMachine {
 		}
 	}
 
-	void ChangeState(){
-
+	public void ChangeState(){
+		Goal g = owner.Objectives.Queue[0];
+		switch(g.Type){
+			case Goal.Objective_T.TRAP :
+			break;
+			case Goal.Objective_T.MONSTER :
+			break;
+			case Goal.Objective_T.RELIC :
+			break;
+			case Goal.Objective_T.KEY :
+			break;
+			
+		}
 	}
 
 	public void HandleMessage(Agent sender, Agent receiver, Message.Message_T message)
