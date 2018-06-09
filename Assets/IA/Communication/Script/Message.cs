@@ -19,14 +19,9 @@ public class Message  {
 
     public void SendMessage()
     {
-        switch (message)
-        {
-            case Message_T.GOT_INFORMATION:
-                //receiver.StateMachine.HandleMessage(message, sender);
-                break;
-            case Message_T.NEED_HEAL:
-                break;
-        }
+
+         receiver.StateMachine.HandleMessage(sender, receiver, message);
+
     }
 
 

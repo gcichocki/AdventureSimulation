@@ -20,9 +20,4 @@ public class AttackEnnemy : State  {
 	public void Exit(){
 		 
 	 }
-	override
-	public void ReceiveMessage( Goal message ){
-		
-	}
-
 }

@@ -22,7 +22,4 @@ public class HandleObjects : State {
 	public void Exit(){
 		 
 	 }
-	override
-	public void ReceiveMessage( Goal message ){
-	}
 }

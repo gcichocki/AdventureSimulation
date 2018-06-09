@@ -24,7 +24,15 @@ public class StateMachine {
 
 	}
 
-	public void HandleMessage( Goal message ){
-
-	}
+	public void HandleMessage(Agent sender, Agent receiver, Message.Message_T message)
+    {
+        switch (message)
+        {
+            case Message.Message_T.GOT_INFORMATION:
+                //do something
+                break;
+            case Message.Message_T.NEED_HEAL:
+                break;
+        }
+    }
 }

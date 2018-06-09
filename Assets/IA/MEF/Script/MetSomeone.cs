@@ -20,7 +20,4 @@ public class MetSomeone : State  {
 	public void Exit(){
 		 
 	 }
-	override
-	public void ReceiveMessage( Goal message ){
-	}
 }
