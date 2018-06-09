@@ -18,6 +18,11 @@ public class GoalQueue {
         queue.Sort();
     }
 
+    public Vector3 GetBestObjectivePosition()
+    {
+        return queue[0].Location.position ;
+    }
+
    /* void Start()
     {
         this.queue = new List<Goal>();
