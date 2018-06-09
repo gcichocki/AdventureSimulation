@@ -5,8 +5,11 @@ using UnityEngine;
 public class GoalQueue {
 
     List<Goal> queue;
+    Dictionary<int, Goal> content;
+
     bool once = true;
     public List<Goal> Queue { get { return queue; } set { queue = value; } }
+    public Dictionary<int, Goal> Content { get { return content; } set { content = value; } }
 
     public GoalQueue()
     {
@@ -16,6 +19,21 @@ public class GoalQueue {
     public void SortByPriority()
     {
         queue.Sort();
+    }
+
+    public bool ContainsGoal(Goal g)
+    {
+        return content.ContainsKey(g.Id);
+    }
+
+    public void AddGoal(Goal g)
+    {
+        if (!ContainsGoal(g))
+        {
+            queue.Add(g);
+            content.Add(g.Id, g);
+        }
+        
     }
 
     public Vector3 GetBestObjectivePosition()
