@@ -21,14 +21,14 @@ public class GoalQueue {
         queue.Sort();
     }
 
-    public bool ContainsGoal(Goal g)
+    public bool ContainsGoal(int id)
     {
-        return content.ContainsKey(g.Id);
+        return content.ContainsKey(id);
     }
 
     public void AddGoal(Goal g)
     {
-        if (!ContainsGoal(g))
+        if (!ContainsGoal(g.Id))
         {
             queue.Add(g);
             content.Add(g.Id, g);
