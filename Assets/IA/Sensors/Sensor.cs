@@ -54,6 +54,14 @@ public class Sensor
     /// <value>The sensed Rigidbody.</value>
     public Rigidbody SensedBody { get; private set; }
 
+    public HashSet<Transform> SensedObjects
+    {
+        get
+        {
+            return sensedObjects;
+        }
+    }
+
     public void DrawGizmo()
     {
         if (source != null)
@@ -83,7 +91,7 @@ public class Sensor
         Vector3 usedRay = (distance > 0 && useLocalOffset) ? 
             source.TransformVector(this.ray) : this.ray;
 
-        sensedObjects.Clear();
+        SensedObjects.Clear();
         bool sensedSomething = false;
         RaycastHit lastHit = noHit;
         if (all)
@@ -95,7 +103,7 @@ public class Sensor
                     (noTagMask || parsedTags.Contains(hit.collider.tag)))
                 {
                     lastHit = hit;
-                    sensedObjects.Add(lastHit.transform);
+                    SensedObjects.Add(lastHit.transform);
                 }
             }
             sensedSomething = lastHit.collider != null;
@@ -129,7 +137,7 @@ public class Sensor
     public bool Sense(Transform target)
     {
         SenseAny();
-        return sensedObjects.Contains(target);
+        return SensedObjects.Contains(target);
     }
 
     protected virtual bool OnSense(RaycastHit hit)

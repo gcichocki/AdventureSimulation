@@ -16,13 +16,13 @@ public class GoToObj : State {
 	 }
 	override
 	public void Execute(){
-		 
+		owner.GetComponent<Agent>().Vision.SenseAny();
+		HashSet<Transform> objects_in_view = owner.GetComponent<Agent>().Vision.SensedObjects;
+		foreach(GameObject in objects_in_view)
 	 }
 	override
 	public void Exit(){
 		 
 	 }
-	override
-	public void ReceiveMessage( Goal message ){
-	}
+	
 }
