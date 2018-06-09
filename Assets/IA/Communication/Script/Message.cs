@@ -19,9 +19,7 @@ public class Message  {
 
     public void SendMessage()
     {
-
-         receiver.StateMachine.HandleMessage(sender, receiver, message);
-
+        receiver.StateMachine.HandleMessage(sender, receiver, message);
     }
 
 
