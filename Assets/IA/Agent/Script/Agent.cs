@@ -11,10 +11,16 @@ public class Agent : MonoBehaviour {
 	[SerializeField] Sensor Vision;
 	[SerializeField] Sensor Discussion;
 
-	
 
-	// Use this for initialization
-	void Start () {
+    GoalQueue objectives;
+    public GoalQueue Objectives { get { return objectives; } set { objectives = value; } }
+
+    GoalQueue new_objectives;
+    public GoalQueue New_Objectives { get { return new_objectives; } set { new_objectives = value; } }
+
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
