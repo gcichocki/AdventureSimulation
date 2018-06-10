@@ -315,7 +315,7 @@ MonoBehaviour:
     health: 0
     damage: 0
     energy: 0
-    my_class: 0
+    my_class: 2
     attackRange:
       radius: 0
       layers:
