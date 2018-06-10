@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Teleport : MonoBehaviour {
 
@@ -9,9 +10,14 @@ public class Teleport : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if(destination!=null)
+        other.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        if (destination != null)
+        {
             other.gameObject.transform.position = destination.position;
+        }
+        other.gameObject.GetComponent<NavMeshAgent>().enabled = true;
     }
+           
 
     // Use this for initialization
 }

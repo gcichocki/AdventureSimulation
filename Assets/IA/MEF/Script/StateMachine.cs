@@ -70,10 +70,15 @@ public class StateMachine {
 			current_state.Exit();
 			current_state=new GoHome(owner.gameObject);
 			current_state.Enter();
-		}
+		}   
+    }
 
-        
-            
+    public void ChangeToGoHome()
+    {
+        previous_state = current_state;
+        current_state.Exit();
+        current_state = new GoHome(owner.gameObject);
+        current_state.Enter();
     }
 
     public void HandleDiscussion()

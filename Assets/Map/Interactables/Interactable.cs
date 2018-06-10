@@ -5,9 +5,8 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
 
-    private static int nb_interactable = 0;
 
-    int id;
+    [SerializeField] int id;
     [SerializeField] Transform myTransform;
     [SerializeField] Goal.Objective_T type;
     [SerializeField] BaseEntity.Class_T concern;
@@ -20,8 +19,6 @@ public class Interactable : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        id = nb_interactable;
-        nb_interactable++;
     }
 
     // Update is called once per frame

@@ -18,7 +18,7 @@ public class Agent : MonoBehaviour {
     public float TimerInfo { get { return timer; } set { timer = value; } }
 
 
-    GoalQueue objectives;
+    [SerializeField] GoalQueue objectives;
     public GoalQueue Objectives { get { return objectives; } set { objectives = value; } }
 
     GoalQueue new_objectives;
@@ -32,12 +32,16 @@ public class Agent : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Objectives = new GoalQueue(this);
+        New_Objectives = new GoalQueue(this);
+        Goal g = new Goal(Relic, this);
+        AddNewGoal(g, this);
+
         stateMachine = new StateMachine(this);
         Discussion.Initialize();
         Vision.Initialize();
         entity.AttackRange.Initialize();
-        Objectives = new GoalQueue(this);
-        New_Objectives = new GoalQueue(this);
+        
         /*if (this.gameObject.tag.Equals("HEALER"))
         {
             Goal c = new Goal(Goal.Objective_T.TRAP, null, BaseEntity.Class_T.HUNTER, this);
@@ -76,14 +80,33 @@ public class Agent : MonoBehaviour {
         StateMachine.Update();
     }
 
+    public void FirstGoalIsOver()
+    {
+
+        //remove de tout les goals
+        Goal g = this.Objectives.Queue[0];
+        if (New_Objectives.ContainsGoal(g.Id))
+        {
+            New_Objectives.RemoveGoal(g);
+        }
+        Objectives.Queue[0].Concern = BaseEntity.Class_T.NOBODY;
+        New_Objectives.AddGoal(Objectives.Queue[0], this);
+        Objectives.SortByPriority();
+    }
 
     public void AddNewGoal(Goal g, Agent owner)
     {
         if (!Objectives.ContainsGoal(g.Id))
         {
-            
             New_Objectives.AddGoal(g, owner);
             Objectives.AddGoal(g, owner);
+        }
+        else
+        {
+            if(g.Concern != owner.Objectives.Content[g.Id].Concern)
+            {
+                owner.Objectives.Content[g.Id].Concern = g.Concern;
+            }
         }
     }
 
@@ -120,10 +143,23 @@ public class Agent : MonoBehaviour {
         TimerInfo = time_to_share_info;
     }
 
+    public void PrintGoals()
+    {
+        if (Objectives.Queue.Count > 0)
+        {
+            foreach (Goal g in Objectives.Queue)
+            {
+                Debug.Log(g);
+            }
+        }
+    }
+
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
         Discussion.DrawGizmos();
+        Vision.DrawGizmos();
+        entity.AttackRange.DrawGizmos();
     }
 #endif
 

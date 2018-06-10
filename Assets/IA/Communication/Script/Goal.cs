@@ -2,17 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class Goal : IComparable<Goal>{
 
     public enum Objective_T { RELIC, KEY, TRAP, MONSTER };
 
     public static int global_objective_id = 0;
 
-    int id;
-    Objective_T type;
-    Transform location;
-    BaseEntity.Class_T concern;
+    [SerializeField] int id;
+    [SerializeField] Objective_T type;
+    [SerializeField] Transform location;
+    [SerializeField] BaseEntity.Class_T concern;
 
     Agent owner;
     public Agent Owner { get { return owner; } set { owner = value; } }
@@ -37,6 +37,10 @@ public class Goal : IComparable<Goal>{
         {
             return 1;
         }
+        if (goal.Concern == BaseEntity.Class_T.NOBODY)
+        {
+            return -1000;
+        }
         return 2;
     }
 
@@ -56,7 +60,7 @@ public class Goal : IComparable<Goal>{
         //return id.ToString() + " " + type.ToString() + " " + location.position.ToString() + " " + concern.ToString();
     }
 
-    public String TypeToString(Objective_T type )
+    public static String TypeToString(Objective_T type )
     {
         switch (type)
         {

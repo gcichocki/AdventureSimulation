@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class BaseEntity {
 
-    public enum Class_T { FIGHTER, HEALER, HUNTER, ALL, MONSTER };
+    public enum Class_T { FIGHTER, HEALER, HUNTER, ALL, MONSTER, NOBODY };
 
     protected Inventory inventory;
 

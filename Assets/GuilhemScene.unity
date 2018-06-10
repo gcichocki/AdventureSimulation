@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTransform: {fileID: 0}
-  type: 1
+  type: 0
   concern: 1
 --- !u!23 &586920057
 MeshRenderer:

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class GoalQueue {
 
     Agent owner;
 
-    List<Goal> queue;
+    [SerializeField] List<Goal> queue;
     Dictionary<int, Goal> content;
 
 
@@ -42,6 +43,19 @@ public class GoalQueue {
         }
         
     }
+
+    public void AddGoal(int index, Goal g, Agent owner)
+    {
+        if (!ContainsGoal(g.Id))
+        {
+            g.Owner = owner;
+            queue.Insert(index, g);
+            content.Add(g.Id, g);
+        }
+
+    }
+
+
 
     public void RemoveGoal(Goal g)
     {
