@@ -32,29 +32,48 @@ public class StateMachine {
 	public void ChangeState(){
         previous_state = current_state;
 
-        if(current_state == previous_state)
-        {
-            current_state = new GoToObj(owner.gameObject);
-            //Handle the changing state to the best possible goal
-            Goal g = owner.Objectives.Queue[0];
-            switch (g.Type)
-            {
-                case Goal.Objective_T.TRAP:
-                    break;
-                case Goal.Objective_T.MONSTER:
-                    break;
-                case Goal.Objective_T.RELIC:
-                    break;
-                case Goal.Objective_T.KEY:
-                    break;
-
+        if(owner.Objectives.Queue.Count!=0){
+			Goal g = owner.Objectives.Queue[0];
+			switch(g.Type){
+				case Goal.Objective_T.TRAP :
+                    
+                    current_state.Exit();
+                    current_state=new HandleTraps(owner.gameObject);
+                    
+				break;
+				case Goal.Objective_T.MONSTER :
+                    
+                    current_state.Exit();
+                    current_state=new AttackEnnemy(owner.gameObject);                    
+				break;
+				case Goal.Objective_T.RELIC :
+                    
+                    current_state.Exit();
+                    current_state=new GoToObj(owner.gameObject);
+                    
+				break;
+				case Goal.Objective_T.KEY :
+                    previous_state=current_state;
+                    current_state.Exit();
+                    current_state=new GoToObj(owner.gameObject);
+                    
+				break;
+                default:
+                    if (current_state != previous_state)
+                    {
+                        previous_state.Exit();
+                    }
+                break;
             }
         }
+		else{
+			previous_state=current_state;
+			current_state.Exit();
+			current_state=new GoHome(owner.gameObject);
+			current_state.Enter();
+		}
 
-        if (current_state != previous_state)
-        {
-            previous_state.Exit();
-        }
+        
             
     }
 
