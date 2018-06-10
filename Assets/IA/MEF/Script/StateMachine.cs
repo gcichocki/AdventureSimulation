@@ -24,18 +24,13 @@ public class StateMachine {
 		if(current_state!=null){
             Debug.Log(current_state.ToString());
             current_state.Execute();
-		}
+            HandleDiscussion();
+
+        }
 	}
 
 	public void ChangeState(){
         previous_state = current_state;
-        //Handle the change to state MetSomeone if the agent got information to share
-        if (owner.GetComponent<Agent>().Discussion.SenseAny() && owner.GotInformation())
-        {
-            Debug.Log("INFO ENVOYEE");
-            current_state = new MetSomeone(owner.gameObject);
-            owner.GetComponent<Agent>().ResetTimerInfo();
-        }
 
         if(current_state == previous_state)
         {
@@ -61,6 +56,22 @@ public class StateMachine {
             previous_state.Exit();
         }
             
+    }
+
+    public void HandleDiscussion()
+    {
+        previous_state = current_state;
+        //Handle the change to state MetSomeone if the agent got information to share
+        if (owner.GetComponent<Agent>().Discussion.SenseAny() && owner.GotInformation())
+        {
+            current_state = new MetSomeone(owner.gameObject);
+            owner.GetComponent<Agent>().ResetTimerInfo();
+        }
+
+        if (current_state != previous_state)
+        {
+            previous_state.Exit();
+        }
     }
 
 	public void HandleMessage(Agent sender, Agent receiver, Message.Message_T message)

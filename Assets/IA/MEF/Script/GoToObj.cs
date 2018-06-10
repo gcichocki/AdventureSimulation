@@ -11,14 +11,14 @@ public class GoToObj : State {
 
 	override
 	public void Enter(){
-		Vector3 dest =owner.GetComponent<Agent>().Objectives.GetBestObjectivePosition();
-		owner.GetComponent<NavMeshAgent>().destination=dest;
+		//Vector3 dest =owner.GetComponent<Agent>().Objectives.GetBestObjectivePosition();
+		//owner.GetComponent<NavMeshAgent>().destination=dest;
 	 }
 
 	override
 	public void Execute(){
         Agent own = owner.GetComponent<Agent>();
-        if (own.Vision.SenseAny())
+        /*if (own.Vision.SenseAny())
         {
             HashSet<Transform> objects_in_view = own.Vision.SensedObjects;
             foreach (Transform t in objects_in_view)
@@ -35,9 +35,9 @@ public class GoToObj : State {
 
 
             }
-            own.Objectives.SortByPriority();
-            own.StateMachine.ChangeState();
-        }
+            own.Objectives.SortByPriority();*/
+        own.StateMachine.ChangeState();
+        //}
 	 }
 
 	override

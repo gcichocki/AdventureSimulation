@@ -16,10 +16,8 @@ public class MetSomeone : State  {
 
 	override
 	public void Execute(){
-        Debug.Log("Dehors");
         if (sender.Discussion.SenseAny())
         {
-            Debug.Log("Dedans");
             HashSet<Transform> objects_in_view = owner.GetComponent<Agent>().Discussion.SensedObjects;
             foreach (Transform t in objects_in_view)
             {

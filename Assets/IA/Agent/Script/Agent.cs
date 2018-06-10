@@ -95,14 +95,14 @@ public class Agent : MonoBehaviour {
             AddNewGoal(g, sender);
         }
         Objectives.SortByPriority();
-        if (once && Objectives.Queue.Count > 0)
+       /* if (once && Objectives.Queue.Count > 0)
         {
             foreach (Goal g in Objectives.Queue)
             {
                 Debug.Log(g);
             }
             once = false;
-        }
+        }*/
     }
 
     public bool GotInformation()
