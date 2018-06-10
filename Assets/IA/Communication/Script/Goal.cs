@@ -9,21 +9,21 @@ public class Goal : IComparable<Goal>{
 
     public static int global_objective_id = 0;
 
-    [SerializeField] int id;
-    [SerializeField] Objective_T type;
-    [SerializeField] Transform location;
-    [SerializeField] BaseEntity.Class_T concern;
+    int id;
+    Objective_T type;
+    Transform location;
+    BaseEntity.Class_T concern;
 
     Agent owner;
     public Agent Owner { get { return owner; } set { owner = value; } }
 
-    public Goal(Objective_T type, Transform location, BaseEntity.Class_T concern, Agent own)
+    public Goal(Interactable obj, Agent own)
     {
         this.owner = own;
-        this.Id = global_objective_id;
-        this.Type = type;
-        this.Location = location;
-        this.Concern = concern;
+        this.Id = obj.ID;
+        this.Type = obj.Type;
+        this.Location = obj.MyTransform;
+        this.Concern = obj.Concern;
         global_objective_id++;
     }
 

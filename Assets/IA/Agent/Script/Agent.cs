@@ -9,7 +9,7 @@ public class Agent : MonoBehaviour {
 
 	[SerializeField] Transform home;
     [SerializeField] Transform dungeonEntrance;
-    [SerializeField] Transform relic;
+    [SerializeField] Interactable relic;
 	[SerializeField] Sensor vision;
 	[SerializeField] Sensor discussion;
 
@@ -38,7 +38,7 @@ public class Agent : MonoBehaviour {
         entity.AttackRange.Initialize();
         Objectives = new GoalQueue(this);
         New_Objectives = new GoalQueue(this);
-        if (this.gameObject.tag.Equals("HEALER"))
+        /*if (this.gameObject.tag.Equals("HEALER"))
         {
             Goal c = new Goal(Goal.Objective_T.TRAP, null, BaseEntity.Class_T.HUNTER, this);
             Goal g = new Goal(Goal.Objective_T.TRAP, null, BaseEntity.Class_T.FIGHTER, this);
@@ -57,14 +57,14 @@ public class Agent : MonoBehaviour {
         }
         if (this.gameObject.tag.Equals("HUNTER"))
         {
-            Goal c = new Goal(Goal.Objective_T.TRAP, null, BaseEntity.Class_T.HUNTER, this);
+            Goal c = new Goal(Goal.Objective_T.RELIC, null, BaseEntity.Class_T.ALL, this);
 
             AddNewGoal(c, this);
 
 
             Objectives.SortByPriority();
 
-        }
+        }*/
 
     }
 	
@@ -73,7 +73,6 @@ public class Agent : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         timer -= Time.deltaTime;
-        Debug.Log("Dehors-2");
         StateMachine.Update();
     }
 
@@ -111,7 +110,6 @@ public class Agent : MonoBehaviour {
         bool res = false;                  // Need to handle the heal case later
         if(New_Objectives.Queue.Count > 0 && timer < 0) //entity.NeedHeal() || New_Objectives.Queue.Count > 0)
         {
-            Debug.Log("G UNE INFO");
             res = true;
         }
         return res;
@@ -155,7 +153,7 @@ public class Agent : MonoBehaviour {
         }
     }
 
-    public Transform Relic
+    public Interactable Relic
     {
         get
         {

@@ -22,7 +22,6 @@ public class StateMachine {
     // Update is called once per frame
     public void Update () {
 		if(current_state!=null){
-            Debug.Log(current_state.ToString());
             current_state.Execute();
             HandleDiscussion();
 
