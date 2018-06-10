@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class GoalQueue {
 
+    Agent owner;
+
     List<Goal> queue;
     Dictionary<int, Goal> content;
+
+
 
     bool once = true;
     public List<Goal> Queue { get { return queue; } set { queue = value; } }
     public Dictionary<int, Goal> Content { get { return content; } set { content = value; } }
 
-    public GoalQueue()
+    public GoalQueue(Agent own)
     {
+        this.owner = own;
         this.queue = new List<Goal>();
+        this.content = new Dictionary<int, Goal>();
     }
 
     public void SortByPriority()
@@ -26,14 +32,24 @@ public class GoalQueue {
         return content.ContainsKey(id);
     }
 
-    public void AddGoal(Goal g)
+    public void AddGoal(Goal g, Agent owner)
     {
         if (!ContainsGoal(g.Id))
         {
+            g.Owner = owner;
             queue.Add(g);
             content.Add(g.Id, g);
         }
         
+    }
+
+    public void RemoveGoal(Goal g)
+    {
+        if (ContainsGoal(g.Id))
+        {
+            queue.Remove(g);
+            content.Remove(g.Id);
+        }
     }
 
     public Vector3 GetBestObjectivePosition()

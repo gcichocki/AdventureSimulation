@@ -36,8 +36,8 @@ public class Sensor
     {
         get
         {
-            return source.position +
-            (useLocalOffset ? source.TransformVector(offset) : offset);
+
+            return source.position + (useLocalOffset ? source.TransformVector(offset) : offset);
         }
     }
 
@@ -62,7 +62,7 @@ public class Sensor
         }
     }
 
-    public void DrawGizmo()
+    public void DrawGizmos()
     {
         if (source != null)
         {

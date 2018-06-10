@@ -11,17 +11,19 @@ public class BaseEntity {
     protected Inventory inventory;
 
     [Header("Attributes")]
-    [SerializeField] protected int health;
-    [SerializeField] protected int damage;
-    [SerializeField] protected int energy;
+    [SerializeField] protected int health = 100;
+    [SerializeField] protected int damage = 20;
+    [SerializeField] protected int energy = 100;
     [SerializeField] protected Class_T my_class;
 
 
     [Tooltip("Settings for the attack sensor of the entity")]
     [SerializeField]
     protected Sensor attackRange;
+    public Sensor AttackRange { get { return attackRange; } set { attackRange = value; } }
 
     public int Health { get { return health; } set { health = value; } }
+    public Class_T Class  { get { return my_class; } set { my_class = value; } }
     public int Damage { get { return damage; } set { damage = value; } }
     public int Energy { get { return energy; } set { energy = value; } }
     public Inventory Inventory { get { return inventory; } set { inventory = value; } }
@@ -39,5 +41,8 @@ public class BaseEntity {
         this.Inventory = inventory;
     }
 
-
+    public bool NeedHeal()
+    {
+        return Health < 50;
+    }
 }

@@ -8,6 +8,7 @@ public class State  {
 
 	public State(GameObject own){
 		owner=own;
+        Enter();
 	}
 
 	 public virtual void Enter(){
