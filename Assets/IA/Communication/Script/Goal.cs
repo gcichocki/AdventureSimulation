@@ -14,10 +14,12 @@ public class Goal : IComparable<Goal>{
     [SerializeField] Transform location;
     [SerializeField] BaseEntity.Class_T concern;
 
-   
+    Agent owner;
+    public Agent Owner { get { return owner; } set { owner = value; } }
 
-    public Goal(Objective_T type, Transform location, BaseEntity.Class_T concern)
+    public Goal(Objective_T type, Transform location, BaseEntity.Class_T concern, Agent own)
     {
+        this.owner = own;
         this.Id = global_objective_id;
         this.Type = type;
         this.Location = location;
@@ -40,7 +42,7 @@ public class Goal : IComparable<Goal>{
 
     public int CompareTo(Goal other)
     {
-        return CompareTo(other, BaseEntity.Class_T.FIGHTER);
+        return CompareTo(other, Owner.entity.Class);
     }
 
     public int CompareTo(Goal other, BaseEntity.Class_T my_class)
@@ -50,8 +52,24 @@ public class Goal : IComparable<Goal>{
 
     public override string ToString()
     {
-        return Id.ToString();
+        return Id.ToString() + " " + TypeToString(type) ;
         //return id.ToString() + " " + type.ToString() + " " + location.position.ToString() + " " + concern.ToString();
+    }
+
+    public String TypeToString(Objective_T type )
+    {
+        switch (type)
+        {
+            case Goal.Objective_T.TRAP:
+                return "TRAP";
+            case Goal.Objective_T.MONSTER:
+                return "MONSTER";
+            case Goal.Objective_T.RELIC:
+                return "RELIC";
+            case Goal.Objective_T.KEY:
+                return "KEY";
+        }
+        return "";
     }
 
     public int Id
