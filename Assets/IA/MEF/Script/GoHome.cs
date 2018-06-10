@@ -10,7 +10,7 @@ public class GoHome : State  {
 
 	override
 	public void Enter(){
-
+		
 	 }
 	override
 	public void Execute(){
