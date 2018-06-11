@@ -11,7 +11,7 @@ public class State  {
         Enter();
 	}
 
-	 public virtual void Enter(){
+	public virtual void Enter(){
 
 	 }
 	public virtual void Execute(){

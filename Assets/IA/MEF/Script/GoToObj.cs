@@ -21,10 +21,13 @@ public class GoToObj : State {
         if (own.Vision.SenseAny())
         {
             
+            
             HashSet<Transform> objects_in_view = own.Vision.SensedObjects;
             foreach (Transform t in objects_in_view)
             {
+                
                 Interactable inte = t.GetComponent<Interactable>();
+                
                 if (inte.Type == Goal.Objective_T.TRAP && !own.Objectives.ContainsGoal(inte.ID))
                 { // check ID et classe necessaire pour le trap
                     if (!own.Objectives.ContainsGoal(inte.ID))
@@ -40,9 +43,9 @@ public class GoToObj : State {
                     // Y voit pas le paneau !
                     if (!own.Objectives.ContainsGoal(inte.ID))
                     {
-                        Debug.Log("Informations !");
+                       
                         Goal g = new Goal(inte , own);
-                        owner.GetComponent<Agent>().New_Objectives.AddGoal(g, own);
+                        //owner.GetComponent<Agent>().New_Objectives.AddGoal(g, own); // ptetre pas necessaire (c'est du consommable)
                         owner.GetComponent<Agent>().Objectives.AddGoal(0, g, own);
                     }
                 }
