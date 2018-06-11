@@ -25,11 +25,11 @@ public class GoToObj : State {
             foreach (Transform t in objects_in_view)
             {
                 Interactable inte = t.GetComponent<Interactable>();
-                Debug.Log(inte.ID);
                 if (inte.Type == Goal.Objective_T.TRAP && !own.Objectives.ContainsGoal(inte.ID))
                 { // check ID et classe necessaire pour le trap
                     if (!own.Objectives.ContainsGoal(inte.ID))
                     {
+                        Debug.Log("Piege !");
                         Goal g = new Goal(inte , own);
                         owner.GetComponent<Agent>().New_Objectives.AddGoal(g, own);
                         owner.GetComponent<Agent>().Objectives.AddGoal(0, g, own);

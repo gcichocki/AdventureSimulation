@@ -23,7 +23,7 @@ public class StateMachine {
     public void Update () {
 		if(current_state!=null ){
             current_state.Execute();
-             HandleDiscussion();
+            HandleDiscussion();
         }
        
     }
@@ -105,9 +105,10 @@ public class StateMachine {
     {
         previous_state = current_state;
         //Handle the change to state MetSomeone if the agent got information to share
-        
+        Debug.Log("Ya qqn ?");
         if (owner.GetComponent<Agent>().Discussion.SenseAny() && owner.GotInformation())
         {
+            Debug.Log("Ouiiii");
             current_state = new MetSomeone(owner.gameObject);
             owner.GetComponent<Agent>().ResetTimerInfo();
         }
@@ -120,6 +121,7 @@ public class StateMachine {
 
 	public void HandleMessage(Agent sender, Agent receiver, Message.Message_T message)
     {
+        Debug.Log("AA");
         switch (message)
         {
             case Message.Message_T.GOT_INFORMATION:
@@ -127,6 +129,30 @@ public class StateMachine {
                 
                 break;
             case Message.Message_T.NEED_HEAL:
+                break;
+        }
+    }
+
+    public void HandleMessage(Agent sender, Merchant receiver, Message.Message_T message)
+    {
+        Debug.Log("AM");
+        switch (message)
+        {
+            case Message.Message_T.GOT_INFORMATION:
+                receiver.GetNewInformationFrom(sender);
+
+                break;
+        }
+    }
+
+    public void HandleMessage(Merchant sender, Agent receiver, Message.Message_T message)
+    {
+        Debug.Log("MA");
+        switch (message)
+        {
+            case Message.Message_T.GOT_INFORMATION:
+                receiver.GetNewInformationFrom(sender);
+
                 break;
         }
     }

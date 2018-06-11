@@ -39,7 +39,7 @@ public class Goal : IComparable<Goal>{
         }
         if (goal.Concern == BaseEntity.Class_T.NOBODY)
         {
-            return -1000;
+            return 3;
         }
         return 2;
     }

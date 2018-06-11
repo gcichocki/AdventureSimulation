@@ -18,10 +18,8 @@ public class GoHome : State  {
 
 	override
 	public void Execute(){
-        Debug.Log(owner.gameObject.transform.position == owner.GetComponent<Agent>().Home.position);
 		if(owner.gameObject.transform.position == owner.GetComponent<Agent>().Home.position)
         {
-            Debug.Log("Arrivé Home!");
             owner.GetComponent<Agent>().StateMachine.ChangeToGoDungeon() ;
         }
 	}

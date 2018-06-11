@@ -21,13 +21,14 @@ public class MetSomeone : State  {
             HashSet<Transform> objects_in_view = owner.GetComponent<Agent>().Discussion.SensedObjects;
             foreach (Transform t in objects_in_view)
             {
-                if(t.gameObject.GetComponent<Agent>().entity.Class==BaseEntity.Class_T.MERCHANT)
+                if (t.gameObject.GetComponent<Agent>().entity.Class == BaseEntity.Class_T.MERCHANT)
                 {
-                    Message msg = new Message(sender, t.gameObject.GetComponent<Merchant>(), Message.Message_T.GOT_INFORMATION);
-                    msg.SendMessage();
+                    Debug.Log("Oh un marchand");
+                    Message msg = new Message(sender, t.gameObject.GetComponent<Merchant>() as Merchant, Message.Message_T.GOT_INFORMATION);
+                    msg.SendMessageToMerchant(t.gameObject.GetComponent<Merchant>() as Merchant);
                     
-                    Message msgM = new Message(t.gameObject.GetComponent<Merchant>(),sender , Message.Message_T.GOT_INFORMATION);
-                    msgM.SendMessage();
+                    Message msgM = new Message(t.gameObject.GetComponent<Merchant>() as Merchant, sender , Message.Message_T.GOT_INFORMATION);
+                    msgM.SendMessageFromMerchant(t.gameObject.GetComponent<Merchant>() as Merchant);
                 }
                 else{
                     Message msg = new Message(sender, t.gameObject.GetComponent<Agent>(), Message.Message_T.GOT_INFORMATION);

@@ -22,6 +22,26 @@ public class Message  {
         receiver.StateMachine.HandleMessage(sender, receiver, message);
     }
 
+    public void SendMessageToMerchant(Merchant merchant)
+    {
+        receiver.StateMachine.HandleMessage(sender, merchant as Merchant, message);
+    }
+
+    public void SendMessageFromMerchant(Merchant merchant)
+    {
+        receiver.StateMachine.HandleMessage(merchant, receiver, message);
+    }
+
+    /*  public void InformMerchant()
+      {
+          receiver.StateMachine.HandleMerchantInfo(sender, receiver, message);
+      }
+
+      public void GetFromMerchant()
+      {
+          receiver.StateMachine.HandleMessage(sender, receiver, message);
+      }*/
+
 
 
 }

@@ -6,27 +6,6 @@ public class Merchant : Agent {
 
 	
 
-	// Use this for initialization
-	
-	void Start () {
-		Objectives = new GoalQueue(this);
-        New_Objectives = new GoalQueue(this);
-        Goal g = new Goal(Relic, this);
-        AddNewGoal(g, this);
-
-        stateMachine = new StateMachine(this);
-        Discussion.Initialize();
-        Vision.Initialize();
-        entity.AttackRange.Initialize();
-	}
-	
-	// Update is called once per frame
-	
-	void Update () {
-		timer-=Time.deltaTime;
-		StateMachine.HandleDiscussion();
-	}
-
 	
 	
   	public override bool GotInformation()
@@ -40,7 +19,24 @@ public class Merchant : Agent {
         return res;
     }
 
-	override
+     public override void AddNewGoal(Goal g, Agent owner)
+    {
+        if (!Objectives.ContainsGoal(g.Id))
+        {
+            Objectives.AddGoal(g, owner);
+        }
+        else
+        {
+            if (g.Concern != owner.Objectives.Content[g.Id].Concern)
+            {
+                owner.Objectives.Content[g.Id].Concern = g.Concern;
+            }
+        }
+        New_Objectives.Queue = new List<Goal>(Objectives.Queue);
+        New_Objectives.Content = new Dictionary<int, Goal>(Objectives.Content);
+    }
+
+    override
     public void GetNewInformationFrom(Agent sender)
     {
         foreach (Goal g in sender.New_Objectives.Queue)

@@ -55,7 +55,11 @@ public class GoalQueue {
 
     }
 
-
+    public void Reset()
+    {
+        this.queue = new List<Goal>();
+        this.content = new Dictionary<int, Goal>();
+    }
 
     public void RemoveGoal(Goal g)
     {

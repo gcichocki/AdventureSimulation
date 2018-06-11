@@ -23,7 +23,7 @@ public  class Agent : MonoBehaviour {
     [SerializeField]protected GoalQueue objectives;
     public GoalQueue Objectives { get { return objectives; } set { objectives = value; } }
 
-    GoalQueue new_objectives;
+    [SerializeField]GoalQueue new_objectives;
     public GoalQueue New_Objectives { get { return new_objectives; } set { new_objectives = value; } }
 
 
@@ -35,9 +35,10 @@ public  class Agent : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Objectives = new GoalQueue(this);
-        New_Objectives = new GoalQueue(this);
         Goal g = new Goal(Relic, this);
-        AddNewGoal(g, this);
+        Objectives.AddGoal(g, this);
+        New_Objectives = new GoalQueue(this);
+        
 
         stateMachine = new StateMachine(this);
         Discussion.Initialize();
@@ -96,7 +97,7 @@ public  class Agent : MonoBehaviour {
         Objectives.SortByPriority();
     }
 
-    public  void AddNewGoal(Goal g, Agent owner)
+    virtual public  void AddNewGoal(Goal g, Agent owner)
     {
         if (!Objectives.ContainsGoal(g.Id))
         {
@@ -119,19 +120,19 @@ public  class Agent : MonoBehaviour {
             AddNewGoal(g, sender);
         }
         Objectives.SortByPriority();
-       /* if (once && Objectives.Queue.Count > 0)
-        {
-            foreach (Goal g in Objectives.Queue)
-            {
-                Debug.Log(g);
-            }
-            once = false;
-        }*/
+    }
+
+    public void GetNewInformationFrom(Merchant sender)
+    {
+        Objectives.Queue = new List<Goal>(sender.Objectives.Queue);
+        Objectives.Content = new Dictionary<int, Goal>(sender.Objectives.Content);
+        Objectives.SortByPriority();
+
+        New_Objectives.Reset();
     }
 
     virtual public bool GotInformation()
     {
-        
         bool res = false;                  // Need to handle the heal case later
         if(New_Objectives.Queue.Count > 0 && timer < 0) //entity.NeedHeal() || New_Objectives.Queue.Count > 0)
         {
