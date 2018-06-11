@@ -21,11 +21,11 @@ public class StateMachine {
 
     // Update is called once per frame
     public void Update () {
-		if(current_state!=null){
+		if(current_state!=null && !(owner.entity.Class == BaseEntity.Class_T.MERCHANT)){
             current_state.Execute();
-            HandleDiscussion();
         }
-	}
+        HandleDiscussion();
+    }
 
 	public void ChangeState(){
         previous_state = current_state;

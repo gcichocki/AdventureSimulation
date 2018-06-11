@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HEALER
   - HUNTER
+  - INN
   layers:
   - Default
   - TransparentFX
