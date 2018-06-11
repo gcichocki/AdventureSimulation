@@ -18,7 +18,20 @@ public class GoToObj : State {
 	override
 	public void Execute(){
         Agent own = owner.GetComponent<Agent>();
-        if (own.Vision.SenseAny())
+        if(own.entity.AttackRange.SenseAny()){
+            HashSet<Transform> objects_in_view = own.entity.AttackRange.SensedObjects;
+            foreach (Transform t in objects_in_view)
+            {
+                Interactable inte = t.GetComponent<Interactable>();
+                if (inte.Type == Goal.Objective_T.TRAP ) // On a juste besoin de savoir si il y a piege
+                { 
+                    // Repousser le goal actuel en dernier (de son classement)
+                    own.Objectives.PutGoalDown(own.Objectives.Queue[0],own);
+                    
+                }
+            }
+        }
+        else if (own.Vision.SenseAny()) // On met vraiment le else ???
         {
             
             

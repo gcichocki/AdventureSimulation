@@ -55,6 +55,22 @@ public class GoalQueue {
 
     }
 
+    public void PutGoalDown(Goal g , Agent owner){
+        // Check if we got this Goal
+        if(!ContainsGoal(g.Id)){
+            Debug.Log("Trying to PutDown a non-present Goal");
+        }
+        else{
+            int i = this.queue.IndexOf(g)+1 ,j=i;
+            while(i<queue.Capacity-1 && g.CompareTo(queue[i])==0){
+                i++;
+            }
+            queue.Insert(i,g);
+            queue.RemoveAt(j);
+        }
+
+    }
+
     public void Reset()
     {
         this.queue = new List<Goal>();
