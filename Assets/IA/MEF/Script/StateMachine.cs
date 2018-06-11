@@ -57,6 +57,11 @@ public class StateMachine {
                     current_state=new GoToObj(owner.gameObject);
                     
 				break;
+                case Goal.Objective_T.PANEL :
+                    previous_state=current_state;
+                    current_state.Exit();
+                    current_state=new HandlePanel(owner.gameObject);
+                break;
                 default:
                     if (current_state != previous_state)
                     {

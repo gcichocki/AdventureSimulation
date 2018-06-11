@@ -35,6 +35,17 @@ public class GoToObj : State {
                         owner.GetComponent<Agent>().Objectives.AddGoal(0, g, own);
                     }
                 }
+                 if (inte.Type == Goal.Objective_T.PANEL)
+                { // check ID et classe necessaire pour le trap
+                    // Y voit pas le paneau !
+                    if (!own.Objectives.ContainsGoal(inte.ID))
+                    {
+                        Debug.Log("Informations !");
+                        Goal g = new Goal(inte , own);
+                        owner.GetComponent<Agent>().New_Objectives.AddGoal(g, own);
+                        owner.GetComponent<Agent>().Objectives.AddGoal(0, g, own);
+                    }
+                }
 
 
             }

@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Goal : IComparable<Goal>{
 
-    public enum Objective_T { RELIC, KEY, TRAP, MONSTER };
+    public enum Objective_T { RELIC, KEY, TRAP, MONSTER , PANEL };
 
     public static int global_objective_id = 0;
 
