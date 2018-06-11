@@ -15,7 +15,6 @@ public class Teleport : MonoBehaviour {
         {
             other.gameObject.GetComponent<NavMeshAgent>().Warp(destination.position);
             other.gameObject.GetComponent<Agent>().StateMachine.ChangeStateAfterTP();
-
         }
     }
            

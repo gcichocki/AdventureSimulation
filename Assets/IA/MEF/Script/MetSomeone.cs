@@ -6,6 +6,8 @@ public class MetSomeone : State  {
 
     Agent sender;
 
+    bool metMerchant = false;
+
 	public MetSomeone(GameObject own): base(own){
 	}
 
@@ -24,9 +26,10 @@ public class MetSomeone : State  {
                 if (t.gameObject.GetComponent<Agent>().entity.Class == BaseEntity.Class_T.MERCHANT)
                 {
                     Debug.Log("Oh un marchand");
+                    metMerchant = true;
                     Message msg = new Message(sender, t.gameObject.GetComponent<Merchant>() as Merchant, Message.Message_T.GOT_INFORMATION);
                     msg.SendMessageToMerchant(t.gameObject.GetComponent<Merchant>() as Merchant);
-                    
+
                     Message msgM = new Message(t.gameObject.GetComponent<Merchant>() as Merchant, sender , Message.Message_T.GOT_INFORMATION);
                     msgM.SendMessageFromMerchant(t.gameObject.GetComponent<Merchant>() as Merchant);
                 }
@@ -36,9 +39,17 @@ public class MetSomeone : State  {
                 }
             }
             owner.GetComponent<Agent>().Objectives.SortByPriority();
-            owner.GetComponent<Agent>().StateMachine.ChangeState();
         }
-        sender.StateMachine.ChangeState();
+
+        if (metMerchant)
+        {
+            sender.StateMachine.ChangeToGoDungeon();
+        }
+        else
+        {
+            sender.StateMachine.ChangeState();
+        }
+        
     }
 	override
 	public void Exit(){
