@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Agent : MonoBehaviour {
+public  class Agent : MonoBehaviour {
 
     [Header("Entity Variables")]
     public BaseEntity entity;
@@ -16,18 +16,18 @@ public class Agent : MonoBehaviour {
 	[SerializeField] Sensor discussion;
 
     [SerializeField] float time_to_share_info = 10.0f;
-    float timer = 0.0f;
+    protected float timer = 0.0f;
     public float TimerInfo { get { return timer; } set { timer = value; } }
 
 
-    [SerializeField] GoalQueue objectives;
+    [SerializeField]protected GoalQueue objectives;
     public GoalQueue Objectives { get { return objectives; } set { objectives = value; } }
 
     GoalQueue new_objectives;
     public GoalQueue New_Objectives { get { return new_objectives; } set { new_objectives = value; } }
 
 
-    StateMachine stateMachine;
+    protected StateMachine stateMachine;
     public StateMachine StateMachine { get { return stateMachine; } set { stateMachine = value; } }
 
     bool once = true;
@@ -96,7 +96,7 @@ public class Agent : MonoBehaviour {
         Objectives.SortByPriority();
     }
 
-    public void AddNewGoal(Goal g, Agent owner)
+    public  void AddNewGoal(Goal g, Agent owner)
     {
         if (!Objectives.ContainsGoal(g.Id))
         {
@@ -112,7 +112,7 @@ public class Agent : MonoBehaviour {
         }
     }
 
-    public void GetNewInformationFrom(Agent sender)
+    virtual public void GetNewInformationFrom(Agent sender)
     {
         foreach (Goal g in sender.New_Objectives.Queue)
         {
@@ -129,7 +129,7 @@ public class Agent : MonoBehaviour {
         }*/
     }
 
-    public bool GotInformation()
+    virtual public bool GotInformation()
     {
         
         bool res = false;                  // Need to handle the heal case later
@@ -145,7 +145,7 @@ public class Agent : MonoBehaviour {
         TimerInfo = time_to_share_info;
     }
 
-    public void PrintGoals()
+    virtual public void PrintGoals()
     {
         if (Objectives.Queue.Count > 0)
         {

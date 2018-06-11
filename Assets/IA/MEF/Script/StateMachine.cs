@@ -21,10 +21,11 @@ public class StateMachine {
 
     // Update is called once per frame
     public void Update () {
-		if(current_state!=null && !(owner.entity.Class == BaseEntity.Class_T.MERCHANT)){
+		if(current_state!=null ){
             current_state.Execute();
+             HandleDiscussion();
         }
-        HandleDiscussion();
+       
     }
 
 	public void ChangeState(){
@@ -104,6 +105,7 @@ public class StateMachine {
     {
         previous_state = current_state;
         //Handle the change to state MetSomeone if the agent got information to share
+        
         if (owner.GetComponent<Agent>().Discussion.SenseAny() && owner.GotInformation())
         {
             current_state = new MetSomeone(owner.gameObject);
