@@ -24,7 +24,6 @@ public class StateMachine {
 		if(current_state!=null){
             current_state.Execute();
             HandleDiscussion();
-
         }
 	}
 
@@ -73,11 +72,31 @@ public class StateMachine {
 		}   
     }
 
+    public void ChangeStateAfterTP()
+    {
+        if (owner.gameObject.transform.position == owner.Home.position)
+        {
+            ChangeToGoDungeon();
+        }
+        else
+        {
+            ChangeState();
+        }
+    }
+
     public void ChangeToGoHome()
     {
         previous_state = current_state;
         current_state.Exit();
         current_state = new GoHome(owner.gameObject);
+        current_state.Enter();
+    }
+
+    public void ChangeToGoDungeon()
+    {
+        previous_state = current_state;
+        current_state.Exit();
+        current_state = new GoDungeon(owner.gameObject);
         current_state.Enter();
     }
 

@@ -10,12 +10,13 @@ public class Teleport : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        other.gameObject.GetComponent<NavMeshAgent>().ResetPath();
         if (destination != null)
         {
-            other.gameObject.transform.position = destination.position;
+            other.gameObject.GetComponent<NavMeshAgent>().Warp(destination.position);
+            other.gameObject.GetComponent<Agent>().StateMachine.ChangeStateAfterTP();
+
         }
-        other.gameObject.GetComponent<NavMeshAgent>().enabled = true;
     }
            
 

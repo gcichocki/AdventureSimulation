@@ -7,7 +7,9 @@ public class Agent : MonoBehaviour {
     [Header("Entity Variables")]
     public BaseEntity entity;
 
-	[SerializeField] Transform home;
+	[SerializeField] Transform homeTP;
+    [SerializeField] Transform home;
+    [SerializeField] Transform dungeonEntranceTP;
     [SerializeField] Transform dungeonEntrance;
     [SerializeField] Interactable relic;
 	[SerializeField] Sensor vision;
@@ -228,4 +230,29 @@ public class Agent : MonoBehaviour {
         }
     }
 
+    public Transform HomeTP
+    {
+        get
+        {
+            return homeTP;
+        }
+
+        set
+        {
+            homeTP = value;
+        }
+    }
+
+    public Transform DungeonEntranceTP
+    {
+        get
+        {
+            return dungeonEntranceTP;
+        }
+
+        set
+        {
+            dungeonEntranceTP = value;
+        }
+    }
 }

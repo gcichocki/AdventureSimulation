@@ -24,16 +24,13 @@ public class GoToObj : State {
             HashSet<Transform> objects_in_view = own.Vision.SensedObjects;
             foreach (Transform t in objects_in_view)
             {
-                Debug.Log("Un truc ?");
                 Interactable inte = t.GetComponent<Interactable>();
                 Debug.Log(inte.ID);
                 if (inte.Type == Goal.Objective_T.TRAP && !own.Objectives.ContainsGoal(inte.ID))
                 { // check ID et classe necessaire pour le trap
-                    Debug.Log("OH UN TRAP");
                     if (!own.Objectives.ContainsGoal(inte.ID))
                     {
                         Goal g = new Goal(inte , own);
-                        Debug.Log("OH UN PIEGE PTDR");
                         owner.GetComponent<Agent>().New_Objectives.AddGoal(g, own);
                         owner.GetComponent<Agent>().Objectives.AddGoal(0, g, own);
                     }
