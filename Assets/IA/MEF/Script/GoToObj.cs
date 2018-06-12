@@ -18,7 +18,7 @@ public class GoToObj : State {
 	override
 	public void Execute(){
         Agent own = owner.GetComponent<Agent>();
-        if(own.entity.AttackRange.SenseAny()){
+        /*if(own.entity.AttackRange.SenseAny()){
             HashSet<Transform> objects_in_view = own.entity.AttackRange.SensedObjects;
             foreach (Transform t in objects_in_view)
             {
@@ -30,8 +30,10 @@ public class GoToObj : State {
                     
                 }
             }
-        }
-        else if (own.Vision.SenseAny()) // On met vraiment le else ???
+        }*/
+
+
+        if (own.Vision.SenseAny()) // On met vraiment le else ???
         {
             
             
@@ -56,10 +58,11 @@ public class GoToObj : State {
                     // Y voit pas le paneau !
                     if (!own.Objectives.ContainsGoal(inte.ID))
                     {
-                       
+                        Debug.Log("PANNEAU !");
                         Goal g = new Goal(inte , own);
                         //owner.GetComponent<Agent>().New_Objectives.AddGoal(g, own); // ptetre pas necessaire (c'est du consommable)
                         owner.GetComponent<Agent>().Objectives.AddGoal(0, g, own);
+                        owner.GetComponent<Agent>().New_Objectives.AddGoal(g, own);
                     }
                 }
 

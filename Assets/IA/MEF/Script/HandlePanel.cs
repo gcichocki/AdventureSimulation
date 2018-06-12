@@ -23,7 +23,7 @@ public class HandlePanel : State {
 	override
 	public void Execute () {
 		
-		Agent ag =owner.GetComponent<Agent>();
+		Agent ag = owner.GetComponent<Agent>();
 		if (owner.GetComponent<Agent>().entity.AttackRange.SenseAny())
             {
                 HashSet<Transform> objects_in_view = owner.GetComponent<Agent>().entity.AttackRange.SensedObjects;
@@ -34,11 +34,12 @@ public class HandlePanel : State {
                     { // check ID et classe necessaire pour le trap
                         
 						// Lecture
-						
 						foreach(Interactable I in (inte as Panel).Info){
-							
-							ag.Objectives.AddGoal(new Goal(I,ag),ag);
-						}
+							Goal g = new Goal(I, ag);
+                            Debug.Log(I.ID);
+                            ag.Objectives.AddGoal(g,ag);
+                            ag.New_Objectives.AddGoal(g, ag);
+                        }
 						ag.FirstGoalIsOver();
 						GameObject.Destroy(t.gameObject);
 						
