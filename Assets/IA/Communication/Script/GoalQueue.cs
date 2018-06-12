@@ -59,9 +59,10 @@ public class GoalQueue {
         // Check if we got this Goal
         if(!ContainsGoal(g.Id)){
             Debug.Log("Trying to PutDown a non-present Goal");
-        }
-        else{
-            int i = this.queue.IndexOf(g)+1 ,j=i;
+        } else {
+            int j = this.queue.IndexOf(g);
+            int i = j + 1;
+
             while(i<queue.Capacity-1 && g.CompareTo(queue[i])==0){
                 i++;
             }

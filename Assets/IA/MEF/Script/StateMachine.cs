@@ -47,18 +47,29 @@ public class StateMachine {
 				break;
 				case Goal.Objective_T.RELIC :
                     
-                    current_state.Exit();
-                    current_state=new GoToObj(owner.gameObject);
-                    
+                    if(previous_state is GoToObj)
+                    {
+                        (current_state as GoToObj).UpdateDestination();
+                    }
+                    else
+                    {
+                        current_state.Exit();
+                        current_state = new GoToObj(owner.gameObject);
+                    }
 				break;
 				case Goal.Objective_T.KEY :
-                    previous_state=current_state;
-                    current_state.Exit();
-                    current_state=new GoToObj(owner.gameObject);
-                    
-				break;
+                    if (previous_state is GoToObj)
+                    {
+                        (current_state as GoToObj).UpdateDestination();
+                    }
+                    else
+                    {
+                        current_state.Exit();
+                        current_state = new GoToObj(owner.gameObject);
+                    }
+
+                    break;
                 case Goal.Objective_T.PANEL :
-                    previous_state=current_state;
                     current_state.Exit();
                     current_state=new HandlePanel(owner.gameObject);
                 break;

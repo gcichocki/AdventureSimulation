@@ -36,7 +36,6 @@ public class HandlePanel : State {
 						// Lecture
 						foreach(Interactable I in (inte as Panel).Info){
 							Goal g = new Goal(I, ag);
-                            Debug.Log(I.ID);
                             ag.Objectives.AddGoal(g,ag);
                             ag.New_Objectives.AddGoal(g, ag);
                         }
