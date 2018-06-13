@@ -35,13 +35,21 @@ public class Goal : IComparable<Goal>{
         }
         if (goal.Concern == BaseEntity.Class_T.ALL)
         {
-            return 1;
+            if(goal.Type == Objective_T.KEY)
+            {
+                return 1;
+            }
+            else if (goal.Type == Objective_T.RELIC)
+            {
+                return 2;
+            }
+            
         }
         if (goal.Concern == BaseEntity.Class_T.NOBODY)
         {
-            return 3;
+            return 4;
         }
-        return 2;
+        return 3;
     }
 
     public int CompareTo(Goal other)

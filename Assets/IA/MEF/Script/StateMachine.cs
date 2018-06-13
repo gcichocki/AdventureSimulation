@@ -13,6 +13,19 @@ public class StateMachine {
   	//a record of the last state the agent was in
   	[SerializeField] State   previous_state;
 
+    public State Current_state
+    {
+        get
+        {
+            return current_state;
+        }
+
+        set
+        {
+            current_state = value;
+        }
+    }
+
     public StateMachine(Agent own)
     {
         owner = own;
@@ -23,7 +36,7 @@ public class StateMachine {
     public void Update () {
 		if(current_state!=null ){
             current_state.Execute();
-            HandleDiscussion();
+            HandleFriends();
         }
        
     }
@@ -117,7 +130,7 @@ public class StateMachine {
         current_state.Enter();
     }
 
-    public void HandleDiscussion()
+    public void HandleFriends()
     {
         previous_state = current_state;
         //Handle the change to state MetSomeone if the agent got information to share
@@ -125,6 +138,18 @@ public class StateMachine {
         {
             current_state = new MetSomeone(owner.gameObject);
             owner.GetComponent<Agent>().ResetTimerInfo();
+        }
+        else if (owner.GetComponent<Agent>().Discussion.SenseAny())
+        {
+            HashSet<Transform> objects_in_view = owner.GetComponent<Agent>().Discussion.SensedObjects;
+            foreach (Transform t in objects_in_view)
+            {
+                Agent a = t.gameObject.GetComponent<Agent>();
+                if (a.StateMachine.Current_state is HandleTraps)
+                {
+                    a.Objectives.PutGoalDown(a.Objectives.Queue[0], a);
+                }
+            }
         }
 
         if (current_state != previous_state)

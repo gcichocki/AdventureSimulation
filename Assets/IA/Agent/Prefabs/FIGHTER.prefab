@@ -9,48 +9,48 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1949461642535654}
+  m_RootGameObject: {fileID: 1151289365222220}
   m_IsPrefabParent: 1
---- !u!1 &1949461642535654
+--- !u!1 &1151289365222220
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4979340028286812}
-  - component: {fileID: 33474665090841376}
-  - component: {fileID: 136245092937528022}
-  - component: {fileID: 23001446318619756}
-  - component: {fileID: 54625408464327118}
-  - component: {fileID: 195210311909269032}
-  - component: {fileID: 114675709101669868}
+  - component: {fileID: 4051906202628180}
+  - component: {fileID: 33038274031232590}
+  - component: {fileID: 136974025753147816}
+  - component: {fileID: 23113197330169082}
+  - component: {fileID: 54975549177484012}
+  - component: {fileID: 195690136753535604}
+  - component: {fileID: 114121608424713466}
   m_Layer: 9
-  m_Name: hero
-  m_TagString: HEALER
+  m_Name: FIGHTER
+  m_TagString: FIGHTER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4979340028286812
+--- !u!4 &4051906202628180
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1949461642535654}
+  m_GameObject: {fileID: 1151289365222220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.61, y: -72.94757, z: 2.33}
+  m_LocalPosition: {x: 30.6, y: -72.94757, z: -22.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23001446318619756
+--- !u!23 &23113197330169082
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1949461642535654}
+  m_GameObject: {fileID: 1151289365222220}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -79,19 +79,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33474665090841376
+--- !u!33 &33038274031232590
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1949461642535654}
+  m_GameObject: {fileID: 1151289365222220}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54625408464327118
+--- !u!54 &54975549177484012
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1949461642535654}
+  m_GameObject: {fileID: 1151289365222220}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -101,12 +101,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114675709101669868
+--- !u!114 &114121608424713466
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1949461642535654}
+  m_GameObject: {fileID: 1151289365222220}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9eb038f0f345d7a43a62a071fe35cdc6, type: 3}
@@ -116,7 +116,7 @@ MonoBehaviour:
     health: 100
     damage: 0
     energy: 0
-    my_class: 1
+    my_class: 0
     attackRange:
       radius: 1
       layers:
@@ -125,7 +125,7 @@ MonoBehaviour:
       senseTriggers: 1
       tags: 
       useLocalOffset: 1
-      source: {fileID: 4979340028286812}
+      source: {fileID: 4051906202628180}
       offset: {x: 0, y: 0, z: 0}
       ray: {x: 0, y: 0, z: 0}
       all: 1
@@ -142,7 +142,7 @@ MonoBehaviour:
     senseTriggers: 1
     tags: 
     useLocalOffset: 1
-    source: {fileID: 4979340028286812}
+    source: {fileID: 4051906202628180}
     offset: {x: 0, y: 0, z: 0}
     ray: {x: 0, y: 0, z: 0}
     all: 1
@@ -152,9 +152,9 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 512
     senseTriggers: 1
-    tags: HUNTER,INN
+    tags: HUNTER,INN,HEALER
     useLocalOffset: 1
-    source: {fileID: 4979340028286812}
+    source: {fileID: 4051906202628180}
     offset: {x: 0, y: 0, z: 0}
     ray: {x: 0, y: 0, z: 0}
     all: 1
@@ -163,12 +163,12 @@ MonoBehaviour:
     queue: []
   new_objectives:
     queue: []
---- !u!136 &136245092937528022
+--- !u!136 &136974025753147816
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1949461642535654}
+  m_GameObject: {fileID: 1151289365222220}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -176,19 +176,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &195210311909269032
+--- !u!195 &195690136753535604
 NavMeshAgent:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1949461642535654}
+  m_GameObject: {fileID: 1151289365222220}
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 10
+  m_Acceleration: 24
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 360
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

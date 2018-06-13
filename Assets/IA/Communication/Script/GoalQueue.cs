@@ -68,6 +68,11 @@ public class GoalQueue {
             }
             queue.Insert(i,g);
             queue.RemoveAt(j);
+
+            if(queue[j] == g)
+            {
+                owner.StateMachine.ChangeToGoHome();
+            }
         }
 
     }
