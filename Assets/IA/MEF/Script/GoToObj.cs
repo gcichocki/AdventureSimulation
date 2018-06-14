@@ -18,9 +18,17 @@ public class GoToObj : State {
 
 	override
 	public void Enter(){
-		Vector3 dest = owner.GetComponent<Agent>().Objectives.GetBestObjectivePosition();
-		owner.GetComponent<NavMeshAgent>().destination=dest;
-	 }
+        if (owner.GetComponent<Agent>().Objectives.GetBestObjectivePosition() != null)
+        {
+            Vector3 dest = owner.GetComponent<Agent>().Objectives.GetBestObjectivePosition();
+            owner.GetComponent<NavMeshAgent>().destination = dest;
+        }
+        else
+        {
+            owner.GetComponent<Agent>().FirstGoalIsOver();
+            owner.GetComponent<Agent>().StateMachine.ChangeToGoHome();
+        }
+    }
 
 	override
 	public void Execute(){
