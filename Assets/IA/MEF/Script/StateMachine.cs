@@ -126,6 +126,14 @@ public class StateMachine {
         current_state.Enter();
     }
 
+    public void ChangeToKey()
+    {
+        previous_state = current_state;
+        current_state.Exit();
+        current_state = new HandleKey(owner.gameObject);
+        current_state.Enter();
+    }
+
     public void ChangeToGoDungeon()
     {
         previous_state = current_state;
@@ -155,6 +163,7 @@ public class StateMachine {
                 }
                 else
                 {
+                    owner.Objectives.UpdateOwner(owner);
                     //Debug.Log("SOOOOOOOOORT");
                     //a.Objectives.SortByPriority();
                 }

@@ -68,17 +68,19 @@ public class GoToObj : State {
                         owner.GetComponent<Agent>().New_Objectives.AddGoal(g, own);
                         own.StateMachine.ChangeState();
                     }
+                }else if (inte.Type == Goal.Objective_T.KEY)
+                {
+                    own.StateMachine.ChangeToKey();
                 }
             }
             //own.Objectives.SortByPriority();
-            
         }
 	 }
 
 	override
 	public void Exit(){
 		 
-	 }
+	}
 	
     public void UpdateDestination()
     {

@@ -101,8 +101,14 @@ public  class Agent : MonoBehaviour {
 
     public void GetNewInformationFrom(Merchant sender)
     {
-        Objectives.Queue = new List<Goal>(sender.Objectives.Queue);
-        Objectives.Content = new Dictionary<int, Goal>(sender.Objectives.Content);
+        Objectives.Reset();
+        foreach (Goal g in sender.Objectives.Queue)
+        {
+            Goal g_tmp = new Goal(g, this);
+            g_tmp.Owner = this;
+            AddNewGoal(g_tmp, this);
+        }
+            
         Objectives.UpdateOwner(this);
         Objectives.SortByPriority(this);
         New_Objectives.Reset();

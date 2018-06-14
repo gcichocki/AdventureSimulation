@@ -26,7 +26,7 @@ public class GoalQueue {
     public void SortByPriority(Agent a)
     {
         //UpdateOwner(owner);
-        owner = a;
+        //owner = a;
         //List<Goal> sorted = new List<Goal>(queue);
         //sorted.Sort();
         //queue = new List<Goal>(sorted);

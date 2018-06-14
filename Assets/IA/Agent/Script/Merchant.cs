@@ -41,8 +41,11 @@ public class Merchant : Agent {
     {
         foreach (Goal g in sender.Objectives.Queue)
         {
-            AddNewGoal(g, this);
+            Goal g_tmp = new Goal(g, this);
+            g_tmp.Owner = this;
+            AddNewGoal(g_tmp, this);
         }
+        //this.Objectives.UpdateOwner(this);
     }
 
 	override
