@@ -27,30 +27,7 @@ public class Goal : IComparable<Goal>{
         global_objective_id++;
     }
 
-    public int ScoreRand(Goal goal, BaseEntity.Class_T my_class)
-    {
-        if (goal.Concern == my_class)
-        {
-            return 0;
-        }
-        if (goal.Concern == BaseEntity.Class_T.ALL)
-        {
-            if(goal.Type == Objective_T.KEY)
-            {
-                return UnityEngine.Random.Range(10, 14);
-            }
-            else if (goal.Type == Objective_T.RELIC)
-            {
-                return 100;
-            }
-            
-        }
-        if (goal.Concern == BaseEntity.Class_T.NOBODY)
-        {
-            return 300;
-        }
-        return 200;
-    }
+
 
     public int Score(Goal goal, BaseEntity.Class_T my_class)
     {
@@ -84,7 +61,7 @@ public class Goal : IComparable<Goal>{
 
     public int CompareTo(Goal other, BaseEntity.Class_T my_class)
     {
-        return Math.Abs(ScoreRand(this, my_class) - ScoreRand(other, my_class));
+        return Score(this, my_class) - Score(other, my_class);
     }
 
 
@@ -95,7 +72,7 @@ public class Goal : IComparable<Goal>{
 
     public int CompareToNormal(Goal other, BaseEntity.Class_T my_class)
     {
-        return Math.Abs(Score(this, my_class) - Score(other, my_class));
+        return Score(this, my_class) - Score(other, my_class);
     }
 
     public override string ToString()
@@ -172,3 +149,29 @@ public class Goal : IComparable<Goal>{
         }
     }
 }
+
+
+/*public int ScoreRand(Goal goal, BaseEntity.Class_T my_class)
+{
+    if (goal.Concern == my_class)
+    {
+        return 0;
+    }
+    if (goal.Concern == BaseEntity.Class_T.ALL)
+    {
+        if(goal.Type == Objective_T.KEY)
+        {
+            return UnityEngine.Random.Range(10, 14);
+        }
+        else if (goal.Type == Objective_T.RELIC)
+        {
+            return 100;
+        }
+
+    }
+    if (goal.Concern == BaseEntity.Class_T.NOBODY)
+    {
+        return 300;
+    }
+    return 200;
+}*/

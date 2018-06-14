@@ -155,6 +155,7 @@ public class StateMachine {
                 }
                 else
                 {
+                    Debug.Log("SOOOOOOOOORT");
                     a.Objectives.SortByPriority();
                 }
             }

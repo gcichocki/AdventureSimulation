@@ -91,7 +91,7 @@ public  class Agent : MonoBehaviour {
         {
             AddNewGoal(g, sender);
         }
-        sender.New_Objectives.Reset();
+        //sender.New_Objectives.Reset();
         Objectives.SortByPriority();
     }
 

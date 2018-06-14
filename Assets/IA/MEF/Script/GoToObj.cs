@@ -48,6 +48,7 @@ public class GoToObj : State {
                     else if(once)
                     {
                         Debug.Log("Piege connu!");
+                        own.Objectives.SortByPriority();
                         count++;
                         once = false;
                         own.Objectives.PutGoalDown(own.Objectives.Queue[0], own);
