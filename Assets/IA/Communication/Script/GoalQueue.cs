@@ -63,7 +63,7 @@ public class GoalQueue {
             int j = this.queue.IndexOf(g);
             int i = j + 1;
 
-            while(i<queue.Capacity-1 && g.CompareTo(queue[i])==0){
+            while(i<queue.Capacity-1 && g.CompareToNormal(queue[i])==0){
                 i++;
             }
             queue.Insert(i,g);
@@ -72,6 +72,10 @@ public class GoalQueue {
             if(queue[j] == g)
             {
                 owner.StateMachine.ChangeToGoHome();
+            }
+            else
+            {
+                owner.StateMachine.ChangeState();
             }
         }
 

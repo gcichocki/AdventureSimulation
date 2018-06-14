@@ -27,7 +27,7 @@ public class Goal : IComparable<Goal>{
         global_objective_id++;
     }
 
-    public int Score(Goal goal, BaseEntity.Class_T my_class)
+    public int ScoreRand(Goal goal, BaseEntity.Class_T my_class)
     {
         if (goal.Concern == my_class)
         {
@@ -37,19 +37,44 @@ public class Goal : IComparable<Goal>{
         {
             if(goal.Type == Objective_T.KEY)
             {
-                return 1;
+                return UnityEngine.Random.Range(10, 14);
             }
             else if (goal.Type == Objective_T.RELIC)
             {
-                return 2;
+                return 100;
             }
             
         }
         if (goal.Concern == BaseEntity.Class_T.NOBODY)
         {
-            return 4;
+            return 300;
         }
-        return 3;
+        return 200;
+    }
+
+    public int Score(Goal goal, BaseEntity.Class_T my_class)
+    {
+        if (goal.Concern == my_class)
+        {
+            return 0;
+        }
+        if (goal.Concern == BaseEntity.Class_T.ALL)
+        {
+            if (goal.Type == Objective_T.KEY)
+            {
+                return 1;
+            }
+            else if (goal.Type == Objective_T.RELIC)
+            {
+                return 5;
+            }
+
+        }
+        if (goal.Concern == BaseEntity.Class_T.NOBODY)
+        {
+            return 7;
+        }
+        return 6;
     }
 
     public int CompareTo(Goal other)
@@ -59,7 +84,18 @@ public class Goal : IComparable<Goal>{
 
     public int CompareTo(Goal other, BaseEntity.Class_T my_class)
     {
-        return Score(this, my_class) - Score(other, my_class);
+        return Math.Abs(ScoreRand(this, my_class) - ScoreRand(other, my_class));
+    }
+
+
+    public int CompareToNormal(Goal other)
+    {
+        return CompareToNormal(other, Owner.entity.Class);
+    }
+
+    public int CompareToNormal(Goal other, BaseEntity.Class_T my_class)
+    {
+        return Math.Abs(Score(this, my_class) - Score(other, my_class));
     }
 
     public override string ToString()

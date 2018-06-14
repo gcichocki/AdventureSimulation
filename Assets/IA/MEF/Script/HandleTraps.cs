@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class HandleTraps : State  {
 
-    float timer = 3.0f;
-    float reset_timer = 3.0f;
+    float timer = 1.0f;
+    float reset_timer = 1.0f;
 
     bool try_disarm = false;
     Interactable to_disarm;

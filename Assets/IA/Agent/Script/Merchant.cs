@@ -39,12 +39,10 @@ public class Merchant : Agent {
     override
     public void GetNewInformationFrom(Agent sender)
     {
-        foreach (Goal g in sender.New_Objectives.Queue)
+        foreach (Goal g in sender.Objectives.Queue)
         {
             AddNewGoal(g, sender);
         }
-        //Objectives.ClearMind();
-       
     }
 
 	override

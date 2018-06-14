@@ -45,35 +45,6 @@ public  class Agent : MonoBehaviour {
         Discussion.Initialize();
         Vision.Initialize();
         entity.AttackRange.Initialize();
-        
-        /*if (this.gameObject.tag.Equals("HEALER"))
-        {
-            Goal c = new Goal(Goal.Objective_T.TRAP, null, BaseEntity.Class_T.HUNTER, this);
-            Goal g = new Goal(Goal.Objective_T.TRAP, null, BaseEntity.Class_T.FIGHTER, this);
-            Goal a = new Goal(Goal.Objective_T.RELIC, null, BaseEntity.Class_T.ALL, this);
-            Goal b = new Goal(Goal.Objective_T.KEY, null, BaseEntity.Class_T.ALL, this);
-            Goal d = new Goal(Goal.Objective_T.TRAP, null, BaseEntity.Class_T.HEALER, this);
-
-            AddNewGoal(a, this);
-            AddNewGoal(b, this);
-            AddNewGoal(c, this);
-            AddNewGoal(d, this);
-            AddNewGoal(g, this);
-
-            Objectives.SortByPriority();
-            
-        }
-        if (this.gameObject.tag.Equals("HUNTER"))
-        {
-            Goal c = new Goal(Goal.Objective_T.RELIC, null, BaseEntity.Class_T.ALL, this);
-
-            AddNewGoal(c, this);
-
-
-            Objectives.SortByPriority();
-
-        }*/
-
     }
 	
 
@@ -120,6 +91,7 @@ public  class Agent : MonoBehaviour {
         {
             AddNewGoal(g, sender);
         }
+        sender.New_Objectives.Reset();
         Objectives.SortByPriority();
     }
 

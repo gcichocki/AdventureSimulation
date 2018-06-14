@@ -36,7 +36,11 @@ public class StateMachine {
     public void Update () {
 		if(current_state!=null ){
             current_state.Execute();
-            HandleFriends();
+            if(!(Current_state is HandleTraps))
+            {
+                HandleFriends();
+            }
+           
         }
        
     }
@@ -148,6 +152,10 @@ public class StateMachine {
                 if (a.StateMachine.Current_state is HandleTraps)
                 {
                     a.Objectives.PutGoalDown(a.Objectives.Queue[0], a);
+                }
+                else
+                {
+                    a.Objectives.SortByPriority();
                 }
             }
         }

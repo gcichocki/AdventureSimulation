@@ -7,6 +7,10 @@ public class GoToObj : State {
 
 
     bool once = true;
+    float timer = 1.5f;
+    float reset_timer = 1.5f;
+    float count = 0 ;
+
 
 	public GoToObj(GameObject own): base(own){
 		
@@ -22,7 +26,7 @@ public class GoToObj : State {
 	public void Execute(){
         Agent own = owner.GetComponent<Agent>();
 
-
+        KnownTrapsTimer();
         if (own.Vision.SenseAny()) // On met vraiment le else ???
         {
             HashSet<Transform> objects_in_view = own.Vision.SensedObjects;
@@ -44,8 +48,13 @@ public class GoToObj : State {
                     else if(once)
                     {
                         Debug.Log("Piege connu!");
+                        count++;
                         once = false;
                         own.Objectives.PutGoalDown(own.Objectives.Queue[0], own);
+                        if (count > 3)
+                        {
+                            own.StateMachine.ChangeToGoHome();
+                        }
                         break;
                     }
                 }else if (inte.Type == Goal.Objective_T.PANEL){
@@ -76,4 +85,18 @@ public class GoToObj : State {
         owner.GetComponent<NavMeshAgent>().destination = dest;
     }
 
+
+    void KnownTrapsTimer()
+    {
+        if (!once)
+        {
+            timer -= Time.deltaTime;
+            if (timer < 0)
+            {
+                once = true;
+                timer = reset_timer;
+            }
+
+        }
+    }
 }
