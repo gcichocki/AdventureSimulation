@@ -23,9 +23,15 @@ public class GoalQueue {
         this.content = new Dictionary<int, Goal>();
     }
 
-    public void SortByPriority()
+    public void SortByPriority(Agent a)
     {
+        //UpdateOwner(owner);
+        owner = a;
+        //List<Goal> sorted = new List<Goal>(queue);
+        //sorted.Sort();
+        //queue = new List<Goal>(sorted);
         queue.Sort();
+
     }
 
     public bool ContainsGoal(int id)
@@ -56,8 +62,9 @@ public class GoalQueue {
     }
 
     public void PutGoalDown(Goal g , Agent owner){
+        Debug.Log("Changing Obj with same level");
         // Check if we got this Goal
-        if(!ContainsGoal(g.Id)){
+        if (!ContainsGoal(g.Id)){
             Debug.Log("Trying to PutDown a non-present Goal");
         } else {
             int j = this.queue.IndexOf(g);
@@ -81,6 +88,14 @@ public class GoalQueue {
 
     }
 
+    public void UpdateOwner(Agent a)
+    {
+        foreach(Goal g in queue)
+        {
+            g.Owner = a;
+        }
+    }
+
     public void Reset()
     {
         this.queue = new List<Goal>();
@@ -98,7 +113,14 @@ public class GoalQueue {
 
     public Vector3 GetBestObjectivePosition()
     {
-        return queue[0].Location.position ;
+        if (queue[0].Location.position != null)
+        {
+            return queue[0].Location.position;
+        }
+        else
+        { 
+            return queue[1].Location.position;
+        }
     }
 
    /* void Start()

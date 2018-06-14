@@ -41,7 +41,7 @@ public class Merchant : Agent {
     {
         foreach (Goal g in sender.Objectives.Queue)
         {
-            AddNewGoal(g, sender);
+            AddNewGoal(g, this);
         }
     }
 

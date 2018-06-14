@@ -18,7 +18,6 @@ public class State  {
 		 
 	 }
 	 public virtual void Exit(){
-		 
 	 }
 
 	

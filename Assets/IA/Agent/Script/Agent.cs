@@ -66,22 +66,23 @@ public  class Agent : MonoBehaviour {
         }
         Objectives.Queue[0].Concern = BaseEntity.Class_T.NOBODY;
         New_Objectives.AddGoal(Objectives.Queue[0], this);
-        Objectives.SortByPriority();
+        Objectives.SortByPriority(this);
     }
 
     virtual public  void AddNewGoal(Goal g, Agent owner)
     {
         if (!Objectives.ContainsGoal(g.Id))
         {
-            New_Objectives.AddGoal(g, owner);
-            Objectives.AddGoal(g, owner);
+            New_Objectives.AddGoal(g, this);
+            Objectives.AddGoal(g, this);
         }
         else
         {
             if(g.Concern != owner.Objectives.Content[g.Id].Concern)
             {
-                owner.Objectives.Content[g.Id].Concern = g.Concern;
+                Objectives.Content[g.Id].Concern = g.Concern;
             }
+            Objectives.Content[g.Id].Owner = this;
         }
     }
 
@@ -89,17 +90,21 @@ public  class Agent : MonoBehaviour {
     {
         foreach (Goal g in sender.New_Objectives.Queue)
         {
-            AddNewGoal(g, sender);
+            Goal g_tmp = new Goal(g, this);
+            g_tmp.Owner = this;
+            AddNewGoal(g_tmp, this);
         }
         //sender.New_Objectives.Reset();
-        Objectives.SortByPriority();
+        this.Objectives.UpdateOwner(this);
+        Objectives.SortByPriority(this);
     }
 
     public void GetNewInformationFrom(Merchant sender)
     {
         Objectives.Queue = new List<Goal>(sender.Objectives.Queue);
         Objectives.Content = new Dictionary<int, Goal>(sender.Objectives.Content);
-        Objectives.SortByPriority();
+        Objectives.UpdateOwner(this);
+        Objectives.SortByPriority(this);
         New_Objectives.Reset();
     }
 

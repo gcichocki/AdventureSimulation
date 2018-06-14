@@ -38,7 +38,7 @@ public class MetSomeone : State  {
                     msg.SendMessage();
                 }
             }
-            owner.GetComponent<Agent>().Objectives.SortByPriority();
+            owner.GetComponent<Agent>().Objectives.SortByPriority(owner.GetComponent<Agent>());
         }
 
         if (metMerchant)

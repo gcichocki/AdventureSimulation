@@ -14,7 +14,7 @@ public class Goal : IComparable<Goal>{
     [SerializeField] Transform location;
     [SerializeField] BaseEntity.Class_T concern;
 
-    Agent owner;
+    [SerializeField]  Agent owner;
     public Agent Owner { get { return owner; } set { owner = value; } }
 
     public Goal(Interactable obj, Agent own)
@@ -24,6 +24,16 @@ public class Goal : IComparable<Goal>{
         this.Type = obj.Type;
         this.Location = obj.MyTransform;
         this.Concern = obj.Concern;
+        global_objective_id++;
+    }
+
+    public Goal(Goal g, Agent own)
+    {
+        this.owner = own;
+        this.Id = g.Id;
+        this.Type = g.Type;
+        this.Location = g.Location;
+        this.Concern = g.Concern;
         global_objective_id++;
     }
 
