@@ -32,6 +32,11 @@ public class GoalQueue {
         //queue = new List<Goal>(sorted);
         queue.Sort();
 
+        if(queue[0].Location == null)
+        {
+            owner.FirstGoalIsOver();
+        }
+
     }
 
     public bool ContainsGoal(int id)
